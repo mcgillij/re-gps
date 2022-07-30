@@ -14,7 +14,7 @@ format:
     toc: true
 
 website:
-  title: "re_gps"
+  title: "regps"
   description: "re-merge metadata stripped by google"
   execute: 
     enabled: false

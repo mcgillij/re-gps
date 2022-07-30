@@ -2,5 +2,6 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - 00_core.ipynb
+      - 00_json_explorer.ipynb
+      - 01_exif_explorer.ipynb
       - README.md
