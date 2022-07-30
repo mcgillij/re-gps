@@ -28,9 +28,4 @@ def get_exif(image_path):
 
 # %% ../01_exif_explorer.ipynb 9
 def extract_exif(images):
-    images_and_data = []
-    for i in images:
-        images_and_data.append(
-            ImageData(i, get_exif(i))
-        )
-    return images_and_data
+    return [ImageData(i, get_exif(i)) for i in images]

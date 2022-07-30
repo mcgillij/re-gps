@@ -42,12 +42,7 @@ locations = [l for l in output["locations"]]
 # and the differing timestamps, best effort to parse those.
 
 def build_location_history(locations):
-    location_history = []
-    for l in locations:
-        if l.get("latitudeE7"):
-            location_history.append(
-                Location(get_timestamp(l["timestamp"]), l["latitudeE7"], l["longitudeE7"], l["accuracy"])
-            )
+    location_history = [Location(get_timestamp(l["timestamp"]), l["latitudeE7"], l["longitudeE7"], l["accuracy"]) for l in locations if l.get("latitudeE7")]
     # sort by timestamp
     location_history.sort(key=lambda location: location.timestamp)
     return location_history
