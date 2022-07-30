@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "re-gps"
+name = "regps"
 version = "0.1.0"
 description = ""
 authors = ["mcgillij <mcgillivray.jason@gmail.com>"]

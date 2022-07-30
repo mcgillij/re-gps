@@ -9,6 +9,9 @@ __pycache__/
 # sample-data
 sample-data/
 
+# _docs from nbdev_docs
+_docs/
+
 # Distribution / packaging
 .Python
 build/
@@ -130,3 +133,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/.quarto/
