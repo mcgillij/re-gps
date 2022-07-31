@@ -16,7 +16,7 @@ ReGPS
 from regps.regps import regps
 image_path = "sample-data/*.jpg"
 location_data = "sample-data/sample.json"
-output_path = "output"
+output_path = "/tmp"
 
 regps(image_path, location_data, output_path)
 ```
@@ -28,10 +28,10 @@ regps(image_path, location_data, output_path)
 >      regps (image_path, location_data, output_path)
 
 Take Google Location data, and map it to an image folder based on date
-detals
+details
 
 |               | **Details**               |
 |---------------|---------------------------|
 | image_path    | “sample-data/\*.jpg”      |
 | location_data | “sample-data/sample.json” |
-| output_path   | “output”                  |
+| output_path   | “/tmp”                    |
