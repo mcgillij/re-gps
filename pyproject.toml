@@ -6,8 +6,6 @@ authors = ["mcgillij <mcgillivray.jason@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-nbdev = "^2.0.4"
-jupyter = "^1.0.0"
 exif = "^1.3.5"
 gpsphoto = "^2.2.3"
 ExifRead = "^3.0.0"
@@ -15,6 +13,8 @@ Pillow = "^9.2.0"
 piexif = "^1.1.3"
 
 [tool.poetry.dev-dependencies]
+nbdev = "^2.0.4"
+jupyter = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

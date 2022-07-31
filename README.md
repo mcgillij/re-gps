@@ -9,22 +9,29 @@ ReGPS
 
 ## How to use
 
-> Some basic usage here:
+> You will need your location history in JSON form, and the path to your
+> images: you can replace `sample-data` with a path to your image files.
 
 ``` python
-file_to_open = "sample-data/Records.json"
-locations = get_locations(file_to_open)
+from regps.regps import regps
+image_path = "sample-data/*.jpg"
+location_data = "sample-data/sample.json"
+output_path = "output"
+
+regps(image_path, location_data, output_path)
 ```
 
-``` python
-locations[0]
-```
+------------------------------------------------------------------------
 
-    {'latitudeE7': 446549411,
-     'longitudeE7': -635836042,
-     'accuracy': 41,
-     'activity': [{'activity': [{'type': 'STILL', 'confidence': 100}],
-       'timestamp': '2016-06-29T13:08:17.979Z'}],
-     'source': 'WIFI',
-     'deviceTag': 586642716,
-     'timestamp': '2016-06-29T13:08:14.670Z'}
+#### regps
+
+>      regps (image_path, location_data, output_path)
+
+Take Google Location data, and map it to an image folder based on date
+detals
+
+|               | **Details**               |
+|---------------|---------------------------|
+| image_path    | “sample-data/\*.jpg”      |
+| location_data | “sample-data/sample.json” |
+| output_path   | “output”                  |
