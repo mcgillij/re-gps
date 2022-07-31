@@ -33,7 +33,6 @@ def get_time_delta(a, b):
 
 # %% ../02_date_compare.ipynb 21
 # optimized solution
-from bisect import bisect
 def get_smallest_deltas(image_list, locations):
     d = {}
     location_timestamps = [location.timestamp for location in locations]
