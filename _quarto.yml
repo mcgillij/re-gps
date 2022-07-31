@@ -15,7 +15,7 @@ format:
 
 website:
   title: "regps"
-  description: "re-merge metadata stripped by google"
+  description: "re-merge metadata stripped by google into images"
   execute: 
     enabled: false
   twitter-card: true
