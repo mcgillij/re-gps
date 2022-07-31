@@ -15,7 +15,7 @@ def regps(image_path, # "sample-data/*.jpg"
          location_data, # "sample-data/sample.json"
          output_path # "/tmp"
     ):
-    """Take Google Location data, and map it to an image folder based on date detals"""
+    """Take Google Location data, and map it to an image folder based on date details"""
     images = glob.glob(image_path)
     image_list = extract_exif(images)
     locations = build_location_history(get_locations(location_data))
