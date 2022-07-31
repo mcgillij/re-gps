@@ -13,7 +13,7 @@ import json
 Location = namedtuple("Location", ["timestamp", "latitude", "longitude", "accuracy"])
 
 # %% ../00_json_explorer.ipynb 7
-def get_timestamp(timestamp):
+def get_timestamp(timestamp): # Example: 2022-06-24T19:38:55.633Z or 2022-06-24T19:38:55Z
     """
     Google stores the timestamp in different formats, making this annoying
     """
