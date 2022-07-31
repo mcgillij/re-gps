@@ -14,9 +14,6 @@ _docs/
 
 .quarto/
 
-# output
-output/
-
 # Distribution / packaging
 .Python
 build/
