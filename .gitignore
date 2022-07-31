@@ -12,6 +12,8 @@ sample-data/
 # _docs from nbdev_docs
 _docs/
 
+.quarto/
+
 # Distribution / packaging
 .Python
 build/

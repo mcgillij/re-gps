@@ -13,8 +13,7 @@ Fill me in please! Don’t forget code examples:
 
 ``` python
 file_to_open = "sample-data/Records.json"
-output = open_json_file(file_to_open)
-locations = [l for l in output["locations"]]
+locations = get_locations(file_to_open)
 ```
 
 ``` python

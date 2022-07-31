@@ -4,4 +4,5 @@ website:
       - index.ipynb
       - 00_json_explorer.ipynb
       - 01_exif_explorer.ipynb
+      - 02_date_compare.ipynb
       - README.md
