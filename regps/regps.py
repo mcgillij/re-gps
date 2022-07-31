@@ -3,17 +3,17 @@
 # %% auto 0
 __all__ = ['regps']
 
-# %% ../03_regps.ipynb 2
+# %% ../03_regps.ipynb 3
 import glob
 
 from .json_explorer import *
 from .exif_explorer import *
 from .date_compare import *
 
-# %% ../03_regps.ipynb 3
+# %% ../03_regps.ipynb 4
 def regps(image_path, # "sample-data/*.jpg"
          location_data, # "sample-data/sample.json"
-         output_path # "output"
+         output_path # "/tmp"
     ):
     """Take Google Location data, and map it to an image folder based on date detals"""
     images = glob.glob(image_path)
