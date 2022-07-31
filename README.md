@@ -9,7 +9,7 @@ ReGPS
 
 ## How to use
 
-Fill me in please! Don’t forget code examples:
+> Some basic usage here:
 
 ``` python
 file_to_open = "sample-data/Records.json"

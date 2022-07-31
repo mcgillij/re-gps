@@ -5,7 +5,6 @@ __all__ = ['ImageData', 'open_image', 'extract_exif']
 
 # %% ../01_exif_explorer.ipynb 3
 from collections import namedtuple
-
 from exif import Image
 
 # %% ../01_exif_explorer.ipynb 4
