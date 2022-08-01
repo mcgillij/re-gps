@@ -31,26 +31,23 @@ def get_time_delta(a, b):
         return delta_to_minutes(a - b)
     return delta_to_minutes(b - a)
 
-# %% ../02_date_compare.ipynb 21
+# %% ../02_date_compare.ipynb 20
 # optimized solution
 def get_smallest_deltas(image_list, locations):
     d = {}
-    location_timestamps = [location.timestamp for location in locations]
+    location_timestamps = [l.timestamp for l in locations]
     for image_index, image in enumerate(image_list):
         image_timestamp = to_timestamp(image.exif.get("datetime_original"))
+        
         index = bisect(location_timestamps, image_timestamp)
-        if index < len(image_list): # if index isn't in range (ie: last element)
-            delta1 = get_time_delta(image_timestamp, locations[index].timestamp) 
-            delta2 = get_time_delta(image_timestamp, locations[index+1].timestamp)
-            if delta1 > delta2:
-                index = index + 1
-        else:
-            index = len(image_list)
+        if index == len(location_timestamps):
+            index = index -1
+        delta = get_time_delta(image_timestamp, locations[index].timestamp) 
         d[image_index] = index
     return d
     
 
-# %% ../02_date_compare.ipynb 24
+# %% ../02_date_compare.ipynb 23
 # de-google lat/long
 
 # new data structure to hold images w gps metadata
@@ -71,7 +68,7 @@ def de_google_gps_info(d, image_list, locations):
         imgs_w_data.append(ImageGPS(image_list[image_index].image_path, (lat, long)))
     return imgs_w_data
 
-# %% ../02_date_compare.ipynb 27
+# %% ../02_date_compare.ipynb 26
 def write_gps_info_to_images(image_list, output_path):
     for image in image_list:
         info = gpsphoto.GPSInfo(image.gps)
