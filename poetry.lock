@@ -213,7 +213,7 @@ dev = ["mypy (==0.950)", "pylint (==2.13.8)"]
 
 [[package]]
 name = "fastcore"
-version = "1.5.11"
+version = "1.5.13"
 description = "Python supercharged for fastai development"
 category = "dev"
 optional = false
@@ -556,7 +556,7 @@ webpdf = ["pyppeteer (>=1,<1.1)"]
 
 [[package]]
 name = "nbdev"
-version = "2.0.6"
+version = "2.0.7"
 description = "Create delightful software with Jupyter Notebooks"
 category = "dev"
 optional = false
