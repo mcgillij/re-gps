@@ -51,7 +51,7 @@ def get_smallest_deltas(image_list, locations):
 # de-google lat/long
 
 # new data structure to hold images w gps metadata
-ImageGPS = namedtuple("ImageGPS", ["image_path", "gps"])
+ImageGPS = namedtuple("ImageGPS", ["image_path", "gps", "alt"])
 
 def convert_to_decimal(lat, long):
     # 1e7 is the value to divide by to convert from latitudeE7/longitudeE7 fields
@@ -65,13 +65,14 @@ def de_google_gps_info(d, image_list, locations):
         location_time = locations[location_index].timestamp
         delta = get_time_delta(image_time, location_time)
         lat, long = convert_to_decimal(locations[location_index].latitude, locations[location_index].longitude)
-        imgs_w_data.append(ImageGPS(image_list[image_index].image_path, (lat, long)))
+        alt = locations[location_index].altitude
+        imgs_w_data.append(ImageGPS(image_list[image_index].image_path, (lat, long), alt))
     return imgs_w_data
 
 # %% ../02_date_compare.ipynb 26
 def write_gps_info_to_images(image_list, output_path):
     for image in image_list:
-        info = gpsphoto.GPSInfo(image.gps)
+        info = gpsphoto.GPSInfo(image.gps, alt=image.alt)
         photo = gpsphoto.GPSPhoto(image.image_path)
         filename = pathlib.Path(image.image_path).name
         photo.modGPSData(info, f'{output_path}/{filename}')

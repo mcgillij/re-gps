@@ -13,6 +13,8 @@ sample-data/
 _docs/
 
 .quarto/
+output
+test.py
 
 # Distribution / packaging
 .Python
