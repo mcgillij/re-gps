@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "exif_explorer.html",
+    "href": "exif_explorer.html",
+    "title": "exif_explorer",
+    "section": "",
+    "text": "We will want to have a list of images to query the exif data\n\nlen(images)\n\n2\n\n\nSee about reading/writing exif data to images\n\n\nextract_exif\n\n extract_exif (images)\n\n\n\n\nopen_image\n\n open_image (image_path)\n\n\nimages_and_data = extract_exif(images)\nassert open_image(images_and_data[0].image_path).make == \"Google\"\ntest_image = open_image(images_and_data[0].image_path)\n\n\nimages_and_data = extract_exif(images)\nassert len(images_and_data) == 2\n\n\nimages_and_data[0].exif.get('datetime_original')\n\n'2018:11:30 07:57:21'"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ReGPS",
+    "section": "",
+    "text": "pip install -e . if you’re working locally"
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "ReGPS",
+    "section": "How to use",
+    "text": "How to use\n\nYou will need your location history in JSON form, and the path to your images: you can replace sample-data with a path to your image files.\n\n\nfrom regps.regps import regps\nimage_path = \"sample-data/*.jpg\"\nlocation_data = \"sample-data/sample.json\"\noutput_path = \"/tmp\"\n\nregps(image_path, location_data, output_path)\n\n\n\nregps\n\n regps (image_path, location_data, output_path)\n\nTake Google Location data, and map it to an image folder based on date details\n\n\n\n\nDetails\n\n\n\n\nimage_path\n“sample-data/*.jpg”\n\n\nlocation_data\n“sample-data/sample.json”\n\n\noutput_path\n“/tmp”"
+  },
+  {
+    "objectID": "date_compare.html",
+    "href": "date_compare.html",
+    "title": "date_compare",
+    "section": "",
+    "text": "import glob\npath = 'sample-data/*.jpg'\nimages = glob.glob(path)\nlen(images)\n\n2\n\n\n\nimage_list = extract_exif(images)\nassert len(image_list) == 2\n\n\nimage_list[0].exif.get(\"datetime_original\")\n# note that some of these can be None, since some images are created by google photos\n\n'2018:11:30 07:57:21'\n\n\nNow we need to convert the to a timestamp the dates from exif\n\n\nto_timestamp\n\n to_timestamp (date)\n\n\n# testing to make sure we get the right value back\ntimestamp = to_timestamp(image_list[0].exif.get(\"datetime_original\"))\ntimestamp\n\n1543579041\n\n\n\ntimestamp2 = to_timestamp(image_list[-1].exif.get(\"datetime_original\"))\ntimestamp2\n\n1543547561\n\n\n\n\n\nget_time_delta\n\n get_time_delta (a, b)\n\n\n\n\ndelta_to_minutes\n\n delta_to_minutes (delta)\n\n\nresults = get_time_delta(timestamp2, timestamp)\nresults\n\n524\n\n\n\n# quick test\nassert(get_time_delta(timestamp2, timestamp)) == 524\n\nNow lets pull some information from location history to compare\n\nfile_to_open = \"sample-data/sample.json\"\n\nlocations = get_locations(file_to_open)\nassert len(locations) == 58\n\n\nlocations_w_gps = build_location_history(locations)\nassert len(locations_w_gps) == 58\n\n\nlocations_w_gps[0]\n\nLocation(timestamp=1467216494, latitude=446549411, longitude=-635836042, accuracy=41)\n\n\nNow lets come up with a bruteforce solution to finding the aligning dates from both datasets\n\n\n\nget_smallest_deltas\n\n get_smallest_deltas (image_list, locations)\n\n\nd = get_smallest_deltas(image_list, locations_w_gps)  \nd\n\n{0: 57, 1: 57}\n\n\nNow we can take a peek at how close the date ranges between the image timestamps and location history timestamps are.\n\n\n\nde_google_gps_info\n\n de_google_gps_info (d, image_list, locations)\n\n\n\n\nconvert_to_decimal\n\n convert_to_decimal (lat, long)\n\n\nimgs_w_data = de_google_gps_info(d, image_list, locations_w_gps)\nimgs_w_data[0]\n\nImageGPS(image_path='sample-data/sample.jpg', gps=(44.6551683, -63.5835479))\n\n\nFrom here we can start associating the GPS data from the location history to the images that Google Photo’s has stripped.\n\n\n\nwrite_gps_info_to_images\n\n write_gps_info_to_images (image_list, output_path)\n\n\n# finally write out new files with GPS data merged in exif\noutput_path = '/tmp'\nwrite_gps_info_to_images(imgs_w_data, output_path)\n\n\n\nEXIF GPS fields for reference\nexif:GPSAltitude=94940/11161\nexif:GPSAltitudeRef=.\nexif:GPSDestBearing=227653/2182\nexif:GPSDestBearingRef=T\nexif:GPSHPositioningError=33479/4096\nexif:GPSImgDirection=227653/2182\nexif:GPSImgDirectionRef=T\nexif:GPSInfo=2272\nexif:GPSLatitude=45/1, 30/1, 5110/100\nexif:GPSLatitudeRef=N\nexif:GPSLongitude=73/1, 31/1, 3981/100\nexif:GPSLongitudeRef=W\nexif:GPSSpeed=4744/18627\nexif:GPSSpeedRef=K"
+  },
+  {
+    "objectID": "regps.html",
+    "href": "regps.html",
+    "title": "regps",
+    "section": "",
+    "text": "regps\n\n regps (image_path, location_data, output_path)\n\nTake Google Location data, and map it to an image folder based on date details\n\n\n\n\nDetails\n\n\n\n\nimage_path\n“sample-data/*.jpg”\n\n\nlocation_data\n“sample-data/sample.json”\n\n\noutput_path\n“/tmp”"
+  },
+  {
+    "objectID": "json_explorer.html",
+    "href": "json_explorer.html",
+    "title": "json_explorer",
+    "section": "",
+    "text": "This is kinda neat that I can fire markdown in here. BTW #| export is magic to mean export it into the source file when we run nbdev_export\n\n\nget_timestamp\n\n get_timestamp (timestamp)\n\nGoogle stores the timestamp in different formats, making this annoying\n\n\n\n\n\n\n\n\nDetails\n\n\n\n\ntimestamp\nExample: 2022-06-24T19:38:55.633Z or 2022-06-24T19:38:55Z\n\n\n\n\n# test data\ntest_string = \"2022-06-24T19:38:55.633Z\"\nget_timestamp(test_string)\n\n1656110335\n\n\n\ntest_string2 = \"2022-06-24T19:38:55Z\"\nget_timestamp(test_string2)\n\n1656110335\n\n\n\nfile_to_open = \"sample-data/sample.json\"\n\nsample data to validate the google json export format\n\n\n\nget_locations\n\n get_locations (file_to_open)\n\n\nlocations = get_locations(file_to_open)\n\n\nlen(locations)\n\n58\n\n\n\nlocations[1]\n\n{'latitudeE7': 446549213,\n 'longitudeE7': -635836178,\n 'accuracy': 45,\n 'source': 'WIFI',\n 'timestamp': '2016-06-29T13:13:01.899Z'}\n\n\n\nlocations[-1]\n\n{'latitudeE7': 446551683,\n 'longitudeE7': -635835479,\n 'accuracy': 111,\n 'source': 'WIFI',\n 'timestamp': '2016-06-29T16:29:08.374Z'}\n\n\n\n\n\nbuild_location_history\n\n build_location_history (locations)\n\nmore validation of output, note that these don’t get exported to the library\n\nlocation_history = build_location_history(locations)\nassert len(location_history) == 58\n\n\nlocation_history[0]\n\nLocation(timestamp=1467216494, latitude=446549411, longitude=-635836042, accuracy=41)\n\n\n\nlocation_history[-1]\n\nLocation(timestamp=1467228548, latitude=446551683, longitude=-635835479, accuracy=111)"
+  }
+]
